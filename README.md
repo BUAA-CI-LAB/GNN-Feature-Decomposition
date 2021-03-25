@@ -1,4 +1,4 @@
-#GNN_Feature_Decomposition
+# GNN-Feature-Decomposition
 #### Overview
 
 This is a repository for our work: GNN Feature Decomposition,
@@ -37,4 +37,4 @@ There are two main top-level scripts in this repo:
 if test total gnn model,there should be two parameters.
 - data: dataset name.
 
-# GNN-Feature-Decomposition
+

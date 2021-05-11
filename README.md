@@ -4,6 +4,9 @@
 This is a repository for our work: GNN Feature Decomposition,
 which is accepted by RTAS 2021(Brif Industry Track), named ***"Optimizing Memory Efficiency of Graph NeuralNetworks on Edge Computing Platforms"***
 
+For more details, please see our full paper: https://arxiv.org/abs/2104.03058 
+
+
 Graph neural networks (GNN) have achieved state-of-the-art performance on various industrial tasks.
 However, the poor efficiency of GNN inference and frequent Out-Of-Memory (OOM) problem limit the successful application of GNN on edge computing platforms.
 To tackle these problems, a feature decomposition approach is proposed for memory efficiency optimization of GNN inference.

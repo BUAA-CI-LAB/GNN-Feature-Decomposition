@@ -138,10 +138,8 @@ else:
 
 model = model.to(device)
 
-if data_use == 'pt':
-    x = torch.Tensor(132534, 1)
-else:
-    x = data.x.to(device)
+
+x = data.x.to(device)
 y = data.y.squeeze().to(device)
 
 if args.agg == "gas":

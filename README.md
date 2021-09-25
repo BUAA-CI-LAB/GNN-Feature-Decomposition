@@ -1,11 +1,20 @@
 # GNN-Feature-Decomposition
+
+
+#### ***NOTE!***
+After our cooperation with the [PyG team](https://github.com/pyg-team/pytorch_geometric), the feature decomposition method has been improved and added
+to the [PyG framework](https://github.com/pyg-team/pytorch_geometric) as an optional feature. For more details and how to use please refer to 
+[Feature Decomposition in PyG](#Feature-Decomposition-in-PyG)
+
+
+
+
 #### Overview
 
 This is a repository for our work: GNN Feature Decomposition,
 which is accepted by RTAS 2021(Brif Industry Track), named ***"Optimizing Memory Efficiency of Graph NeuralNetworks on Edge Computing Platforms"***
 
 For more details, please see our full paper: https://arxiv.org/abs/2104.03058 
-
 
 Graph neural networks (GNN) have achieved state-of-the-art performance on various industrial tasks.
 However, the poor efficiency of GNN inference and frequent Out-Of-Memory (OOM) problem limit the successful application of GNN on edge computing platforms.
@@ -41,3 +50,19 @@ if test total gnn model,there should be two parameters.
 - data: dataset name.
 
 
+#### Feature Decomposition in PyG
+
+We integrated the feature decomposition into the [`MessagePassing`](https://github.com/pyg-team/pytorch_geometric/blob/master/torch_geometric/nn/conv/message_passing.py) 
+module of the [PyG framework](https://github.com/pyg-team/pytorch_geometric). Specifically, we added an optional argument `decomposed_layers: int = 1` to the initialization 
+function of the [`MessagePassing`](https://github.com/pyg-team/pytorch_geometric/blob/master/torch_geometric/nn/conv/message_passing.py) module, as shown below.
+
+
+    def __init__(self, aggr: Optional[str] = "add",
+                 flow: str = "source_to_target", node_dim: int = -2,
+                 decomposed_layers: int = 1):
+
+When creating a layer, pass in the `decomposed_layers` (>1) to use the feature decomposition method. As fllows:
+
+    conv = GCNConv(16, 32, decomoposed_layers = 2 )
+
+For specific usage, please refer to the [example](example/GCN.py)

@@ -76,11 +76,13 @@ For specific usage, please refer to the [example](example/GCN.py)
 ---
 The following table is the test result of the [GCNConv](https://pytorch-geometric.readthedocs.io/en/latest/modules/nn.html#torch_geometric.nn.conv.GCNConv) layer on the reddit data set.
 It can be seen that the best acceleration effect can be achieved when the decomposition granularity is the largest (Not mean that all layers are like this).
-The only rule that we can be sure of is: for a given graph, there is an optimal dimension of one decomposed layer, which does not change with the hidden layer dimension 
+The only rule that we can be sure of is:
+     
+For a given graph, there is an optimal dimension of one decomposed layer, which does not change with the hidden layer dimension 
 (eg: as the following table, it is optimal to set the dimension of the decomposed layer to 1, which means decomoposed_layers = hidden layer ).
 
 <p align="center">
-  <img height="150" src="result.png" />
+  <img src="result.png" />
 </p>
 
 - The horizontal axis : represents the hidden layer dimension of [GCNConv](https://pytorch-geometric.readthedocs.io/en/latest/modules/nn.html#torch_geometric.nn.conv.GCNConv). 

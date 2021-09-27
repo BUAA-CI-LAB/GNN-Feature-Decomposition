@@ -1,15 +1,19 @@
 # GNN-Feature-Decomposition
 
 
-#### ***NOTE!***
+### ***NOTE!***
 After our cooperation with the [PyG team](https://github.com/pyg-team/pytorch_geometric), the feature decomposition method has been improved and added
 to the [PyG framework](https://github.com/pyg-team/pytorch_geometric) as an optional feature. For more details and how to use please refer to 
 [Feature Decomposition in PyG](#Feature-Decomposition-in-PyG)
 
+<p align="center">
+  <img height="150" src="pyg1.svg" />
+</p>
+
+--------------------------------------------------------------------------------
 
 
-
-#### Overview
+### Overview
 
 This is a repository for our work: GNN Feature Decomposition,
 which is accepted by RTAS 2021(Brif Industry Track), named ***"Optimizing Memory Efficiency of Graph NeuralNetworks on Edge Computing Platforms"***
@@ -22,23 +26,23 @@ To tackle these problems, a feature decomposition approach is proposed for memor
 The proposed approach could achieve outstanding optimization on various GNN models, covering a wide range of datasets, which speeds up the inference by up to 3x.
 Furthermore, the proposed feature decomposition could significantly reduce the peak memory usage (up to 5x in memory efficiency improvement) and mitigate OOM problems during GNN inference.
 
-#### Requirements
+### Requirements
 
 Recent versions of PyTorch, numpy, torch_geometric(1.6.3) are required. 
 
 
-####Contents
+### Contents
 There are two main top-level scripts in this repo:
 
     1.test_gnn_layer.py: runs a gnn feature decomposition method on single GNN layer.
     2.test_gnn_total.py: runs a gnn feature decomposition method on total gnn models.
     
-#### Running the code
-##### test single gnn layer by our feature decomposition method.
+### Running the code
+#### test single gnn layer by our feature decomposition method.
     cd test
     python test_gnn_layer.py --hidden=32 --agg="gas" --m="GCN" --layer=32 --data="rd"
     
-##### test total gnn model by our feature decomposition method.
+#### test total gnn model by our feature decomposition method.
     cd test
     python test_gnn_total.py --hidden=32 --agg="gas" --m="GCN" --layer="32,41" --data="rd"
 
@@ -50,7 +54,7 @@ if test total gnn model,there should be two parameters.
 - data: dataset name.
 
 
-#### Feature Decomposition in PyG
+### Feature Decomposition in PyG
 
 We integrated the feature decomposition into the [`MessagePassing`](https://github.com/pyg-team/pytorch_geometric/blob/master/torch_geometric/nn/conv/message_passing.py) 
 module of the [PyG framework](https://github.com/pyg-team/pytorch_geometric). Specifically, we added an optional argument `decomposed_layers: int = 1` to the initialization 

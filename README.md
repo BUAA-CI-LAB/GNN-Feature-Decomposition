@@ -56,6 +56,8 @@ if test total gnn model,there should be two parameters.
 
 ### Feature Decomposition in PyG
 
+---
+
 We integrated the feature decomposition into the [`MessagePassing`](https://github.com/pyg-team/pytorch_geometric/blob/master/torch_geometric/nn/conv/message_passing.py) 
 module of the [PyG framework](https://github.com/pyg-team/pytorch_geometric). Specifically, we added an optional argument `decomposed_layers: int = 1` to the initialization 
 function of the [`MessagePassing`](https://github.com/pyg-team/pytorch_geometric/blob/master/torch_geometric/nn/conv/message_passing.py) module, as shown below.
@@ -70,3 +72,19 @@ When creating a layer, pass in the `decomposed_layers` (>1) to use the feature d
     conv = GCNConv(16, 32, decomoposed_layers = 2 )
 
 For specific usage, please refer to the [example](example/GCN.py)
+
+---
+The following table is the test result of the [GCNConv](https://pytorch-geometric.readthedocs.io/en/latest/modules/nn.html#torch_geometric.nn.conv.GCNConv) layer on the reddit data set.
+It can be seen that the best acceleration effect can be achieved when the decomposition granularity is the largest (Not mean that all layers are like this).
+The only rule that we can be sure of is: for a given graph, there is an optimal dimension of one decomposed layer, which does not change with the hidden layer dimension 
+(eg: as the following table, it is optimal to set the dimension of the decomposed layer to 1, which means decomoposed_layers = hidden layer ).
+
+<p align="center">
+  <img height="150" src="result.png" />
+</p>
+
+- The horizontal axis : represents the hidden layer dimension of [GCNConv](https://pytorch-geometric.readthedocs.io/en/latest/modules/nn.html#torch_geometric.nn.conv.GCNConv). 
+- the vertical axis : equal to the `decomposed_layers`, which means the granularity of feature decomposition. 
+- total : means the running time of whole layer.
+- agg : means the running time of Aggregation phase of GCNConv. 
+

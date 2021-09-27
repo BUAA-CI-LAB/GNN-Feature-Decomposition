@@ -79,7 +79,7 @@ It can be seen that the best acceleration effect can be achieved when the decomp
 The only rule that we can be sure of is:
      
 For a given graph, there is an optimal dimension of one decomposed layer, which does not change with the hidden layer dimension 
-(eg: as the following table, it is optimal to set the dimension of the decomposed layer to 1, which means decomoposed_layers = hidden layer ).
+(eg: as the following table, it is optimal to set the dimension of the decomposed layer to 1, which means `decomoposed_layers = hidden layers` ).
 
 <p align="center">
   <img src="result.png" />
